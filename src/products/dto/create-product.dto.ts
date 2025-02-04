@@ -30,4 +30,9 @@ export class CreateProductDto {
 
     @IsIn(['men','women','kid','unisex']) //Debe permitir solo los valores asignados en @IsIn(...)
     gender: string;
+
+    @IsString({ each: true })
+    @IsArray()
+    @IsOptional()
+    tags?: string[];
 }
