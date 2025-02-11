@@ -121,6 +121,18 @@ export class ProductsService {
     await this.productRepository.remove(product);
   }
 
+  async deleteAllProducts() {
+    const query = this.productRepository.createQueryBuilder('product');
+    try {
+      return await query
+        .delete()
+        .where({})
+        .execute();
+    } catch (error) {
+      this.handlerDBException(error);
+    }
+  }
+
   private handlerDBException(error: any): void {
     if( error.code === '23505' ) throw new BadRequestException(error.detail);
     this.logger.error(error);
