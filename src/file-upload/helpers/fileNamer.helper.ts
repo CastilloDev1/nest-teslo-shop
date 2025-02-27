@@ -6,7 +6,7 @@ export const fileNamer = (req: Express.Request, file: Express.Multer.File, callB
     if( !file ) return callBack( new Error('File is empty!'), false );
 
     const fileExtension = extname(file.originalname);
-    const fileName = `${ uuid() }.${fileExtension}`;
+    const fileName = `${ uuid() }${fileExtension}`;
     
     callBack(null, fileName);
 }
